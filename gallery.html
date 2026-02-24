@@ -2,7 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gallery — Muhammad Saad</title>
+  <title>Gallery — Muhammad Saad | Editorial & Commercial Model Portfolio</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Browse Muhammad Saad's modeling portfolio featuring editorial fashion shoots and commercial campaigns from Lahore, Gujranwala, and Islamabad." />
+  <meta name="keywords" content="model portfolio Pakistan, editorial photography, male model work, fashion portfolio, commercial modeling, Pakistan fashion" />
+  
   <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Outfit:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
@@ -51,10 +56,10 @@
     .filter-btn {
       font-size: .64rem; font-weight: 500; letter-spacing: .2em; text-transform: uppercase;
       padding: .6rem 1.6rem; border-radius: var(--r-pill);
-      border: 1px solid rgba(129,140,248,.22); color: rgba(237,237,245,.45);
+      border: 1px solid rgba(212,197,169,.22); color: rgba(237,237,245,.45);
       background: transparent; cursor: pointer; transition: all .35s;
     }
-    .filter-btn:hover { color: var(--accent-bright); border-color: var(--accent); background: rgba(129,140,248,.08); }
+    .filter-btn:hover { color: var(--accent-bright); border-color: var(--accent); background: rgba(212,197,169,.08); }
     .filter-btn.active { background: linear-gradient(135deg, var(--accent-bright), var(--accent)); color: var(--ink); border-color: transparent; }
 
     /* Lightbox */
@@ -69,18 +74,27 @@
 <body data-page="gallery">
 <div id="cursor-dot"></div><div id="cursor-ring"></div><div id="progress-bar"></div><div id="page-cover"></div>
 
+<div id="drawer-backdrop"></div>
 <div id="lb">
   <span id="lb-close">&times;</span>
-  <img id="lb-img" src="" alt="" />
+  <img id="lb-img" src="" alt="Gallery image" />
   <div id="lb-caption"><p class="serif" style="font-style:italic;font-size:1rem;color:rgba(237,237,245,.6);" id="lb-title"></p></div>
 </div>
 
 <div id="mobile-drawer">
+  <div style="display:flex;justify-content:space-between;align-items:center;width:100%;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid rgba(212,197,169,0.12);">
+    <div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--bone);letter-spacing:0.08em;">M.SAAD</div>
+      <div class="label" style="opacity:.4;margin-top:.2rem;">Pakistan</div>
+    </div>
+    <button onclick="closeDrawer()" style="background:none;border:none;color:rgba(237,237,245,0.4);font-size:1.8rem;cursor:pointer;padding:0;line-height:1;transition:color 0.3s;" aria-label="Close menu">&times;</button>
+  </div>
   <a href="index.html"   class="mob-link" onclick="closeDrawer()">Home</a>
   <a href="gallery.html" class="mob-link active" onclick="closeDrawer()">Gallery</a>
   <a href="stats.html"   class="mob-link" onclick="closeDrawer()">Stats</a>
   <a href="about.html"   class="mob-link" onclick="closeDrawer()">About</a>
   <a href="contact.html" class="mob-link" onclick="closeDrawer()">Contact</a>
+  <span class="label" style="opacity:.3;margin-top:auto;">Muhammad Saad</span>
 </div>
 
 <nav id="nav">
@@ -94,7 +108,7 @@
       <a href="contact.html" class="nav-link">Contact</a>
     </div>
     <a href="contact.html" class="nav-cta">Book Now</a>
-    <button class="ham-btn" id="ham-btn"><span id="h1"></span><span id="h2"></span><span id="h3"></span></button>
+    <button class="ham-btn" id="ham-btn" aria-label="Menu"><span id="h1"></span><span id="h2"></span><span id="h3"></span></button>
   </div>
 </nav>
 
@@ -103,7 +117,7 @@
   <div class="container" style="position:relative;z-index:2;">
     <div class="reveal"><span class="label">Portfolio Work</span><span class="accent-line"></span></div>
     <h1 class="display reveal d1" style="font-size:clamp(3rem,6vw,5.5rem);line-height:.95;margin-top:.6rem;color:var(--bone);">The <em class="text-accent-anim">Gallery</em></h1>
-    <p class="reveal d2" style="margin-top:1rem;font-size:.82rem;color:var(--bone-dim);max-width:420px;line-height:1.85;">Editorial and commercial work across New York, Berlin, and Milan. Click any image to view full size.</p>
+    <p class="reveal d2" style="margin-top:1rem;font-size:.82rem;color:var(--bone-dim);max-width:500px;line-height:1.85;">Editorial and commercial work across Lahore, Gujranwala, and Islamabad. Showcasing the Modern Academic aesthetic through fashion photography. Click any image to view full size.</p>
   </div>
   <div class="page-hero-number">03</div>
 </div>

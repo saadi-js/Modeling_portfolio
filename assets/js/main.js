@@ -76,6 +76,7 @@
   ------------------------------------------------------------------ */
   const hamBtn  = document.getElementById('ham-btn');
   const drawer  = document.getElementById('mobile-drawer');
+  const backdrop = document.getElementById('drawer-backdrop');
   const hLine1  = document.getElementById('h1');
   const hLine2  = document.getElementById('h2');
   const hLine3  = document.getElementById('h3');
@@ -84,6 +85,7 @@
   function openDrawer() {
     drawerOpen = true;
     drawer && drawer.classList.add('open');
+    backdrop && backdrop.classList.add('active');
     document.body.style.overflow = 'hidden';
     if (hLine1) { hLine1.style.transform = 'translateY(7px) rotate(45deg)'; }
     if (hLine2) { hLine2.style.opacity   = '0'; hLine2.style.transform = 'scaleX(0)'; }
@@ -93,6 +95,7 @@
   window.closeDrawer = function () {
     drawerOpen = false;
     drawer && drawer.classList.remove('open');
+    backdrop && backdrop.classList.remove('active');
     document.body.style.overflow = '';
     if (hLine1) { hLine1.style.transform = ''; }
     if (hLine2) { hLine2.style.opacity   = ''; hLine2.style.transform = ''; }
@@ -102,6 +105,13 @@
   if (hamBtn) {
     hamBtn.addEventListener('click', () => {
       drawerOpen ? window.closeDrawer() : openDrawer();
+    });
+  }
+
+  // Close drawer on backdrop click
+  if (backdrop) {
+    backdrop.addEventListener('click', () => {
+      if (drawerOpen) window.closeDrawer();
     });
   }
 
@@ -201,7 +211,7 @@
         `animation-delay:${Math.random() * -12}s`,
         `border-radius:50%`,
         `position:absolute`,
-        `background:rgba(129,140,248,${Math.random() * 0.5 + 0.1})`,
+        `background:rgba(212,197,169,${Math.random() * 0.5 + 0.1})`,
         `animation-name:float-up`,
         `animation-timing-function:ease-in-out`,
         `animation-iteration-count:infinite`,

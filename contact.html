@@ -2,7 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact — Muhammad Saad</title>
+  <title>Contact — Muhammad Saad | Book Model for Shoots & Campaigns</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Book Muhammad Saad for editorial shoots, commercial campaigns, and brand collaborations. Based in Gujranwala, available nationwide across Pakistan." />
+  <meta name="keywords" content="book model Pakistan, hire male model, editorial shoot booking, commercial model contact, Pakistan model booking, WhatsApp model contact" />
+  
   <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Outfit:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
@@ -12,7 +17,7 @@
     .mono-bg {
       position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
       font-family: 'DM Serif Display', serif; font-size: clamp(18rem, 35vw, 28rem);
-      color: transparent; -webkit-text-stroke: 1px rgba(129,140,248,0.06);
+      color: transparent; -webkit-text-stroke: 1px rgba(212,197,169,0.06);
       user-select: none; pointer-events: none; letter-spacing: -0.05em; line-height: 1;
     }
 
@@ -22,12 +27,12 @@
     }
     .drift-line {
       position: absolute; width: 1px;
-      background: linear-gradient(180deg, transparent 0%, rgba(129,140,248,0.18) 40%, rgba(196,181,253,0.12) 60%, transparent 100%);
+      background: linear-gradient(180deg, transparent 0%, rgba(212,197,169,0.18) 40%, rgba(232,220,196,0.12) 60%, transparent 100%);
       animation: drift-v linear infinite;
     }
     .drift-line.h {
       width: auto; height: 1px; top: auto; left: 0; right: 0;
-      background: linear-gradient(90deg, transparent 0%, rgba(129,140,248,0.14) 40%, rgba(196,181,253,0.1) 60%, transparent 100%);
+      background: linear-gradient(90deg, transparent 0%, rgba(212,197,169,0.14) 40%, rgba(232,220,196,0.1) 60%, transparent 100%);
       animation: drift-h linear infinite;
     }
     @keyframes drift-v { 0%{transform:translateY(-100%)} 100%{transform:translateY(100vh)} }
@@ -37,7 +42,7 @@
     .contact-card {
       position: relative; z-index: 2;
       background: rgba(13,13,24,0.7); backdrop-filter: blur(24px);
-      border: 1px solid rgba(129,140,248,0.14); border-radius: var(--r-xl);
+      border: 1px solid rgba(212,197,169,0.14); border-radius: var(--r-xl);
       padding: 3.5rem 3rem; max-width: 600px; margin: 0 auto;
     }
 
@@ -54,15 +59,15 @@
     /* Contact method row */
     .contact-method {
       display: flex; align-items: center; gap: 1rem; padding: 1.1rem 1.25rem;
-      border-radius: var(--r-md); border: 1px solid rgba(129,140,248,0.1);
-      background: rgba(129,140,248,0.03); transition: background .35s, border-color .35s;
+      border-radius: var(--r-md); border: 1px solid rgba(212,197,169,0.1);
+      background: rgba(212,197,169,0.03); transition: background .35s, border-color .35s;
       text-decoration: none;
     }
-    .contact-method:hover { background: rgba(129,140,248,0.08); border-color: rgba(129,140,248,.3); }
+    .contact-method:hover { background: rgba(212,197,169,0.08); border-color: rgba(212,197,169,.3); }
     .contact-icon {
       width: 42px; height: 42px; border-radius: var(--r-md); flex-shrink: 0;
       display: flex; align-items: center; justify-content: center;
-      background: rgba(129,140,248,0.1); color: var(--accent-bright);
+      background: rgba(212,197,169,0.1); color: var(--accent-bright);
     }
 
     /* Availability chip */
@@ -77,18 +82,27 @@
 
     /* Divider */
     .or-divider { display: flex; align-items: center; gap: 1rem; color: var(--bone-dim); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; font-family: 'Outfit', sans-serif; }
-    .or-divider::before, .or-divider::after { content: ''; flex: 1; height: 1px; background: rgba(129,140,248,0.12); }
+    .or-divider::before, .or-divider::after { content: ''; flex: 1; height: 1px; background: rgba(212,197,169,0.12); }
   </style>
 </head>
 <body data-page="contact">
 <div id="cursor-dot"></div><div id="cursor-ring"></div><div id="progress-bar"></div><div id="page-cover"></div>
 
+<div id="drawer-backdrop"></div>
 <div id="mobile-drawer">
+  <div style="display:flex;justify-content:space-between;align-items:center;width:100%;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid rgba(212,197,169,0.12);">
+    <div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--bone);letter-spacing:0.08em;">M.SAAD</div>
+      <div class="label" style="opacity:.4;margin-top:.2rem;">Pakistan</div>
+    </div>
+    <button onclick="closeDrawer()" style="background:none;border:none;color:rgba(237,237,245,0.4);font-size:1.8rem;cursor:pointer;padding:0;line-height:1;transition:color 0.3s;" aria-label="Close menu">&times;</button>
+  </div>
   <a href="index.html"   class="mob-link" onclick="closeDrawer()">Home</a>
   <a href="gallery.html" class="mob-link" onclick="closeDrawer()">Gallery</a>
   <a href="stats.html"   class="mob-link" onclick="closeDrawer()">Stats</a>
   <a href="about.html"   class="mob-link" onclick="closeDrawer()">About</a>
   <a href="contact.html" class="mob-link active" onclick="closeDrawer()">Contact</a>
+  <span class="label" style="opacity:.3;margin-top:auto;">Muhammad Saad</span>
 </div>
 
 <nav id="nav">
@@ -102,7 +116,7 @@
       <a href="contact.html" class="nav-link active">Contact</a>
     </div>
     <a href="contact.html" class="nav-cta">Book Now</a>
-    <button class="ham-btn" id="ham-btn"><span id="h1"></span><span id="h2"></span><span id="h3"></span></button>
+    <button class="ham-btn" id="ham-btn" aria-label="Menu"><span id="h1"></span><span id="h2"></span><span id="h3"></span></button>
   </div>
 </nav>
 
@@ -110,7 +124,7 @@
   <div class="container" style="position:relative;z-index:2;">
     <div class="reveal"><span class="label">Get In Touch</span><span class="accent-line"></span></div>
     <h1 class="display reveal d1" style="font-size:clamp(3rem,6vw,5.5rem);line-height:.95;margin-top:.6rem;color:var(--bone);">Let's <em class="text-accent-anim">Collaborate</em></h1>
-    <p class="reveal d2" style="margin-top:1rem;font-size:.82rem;color:var(--bone-dim);max-width:400px;line-height:1.85;">Open to freelance projects, collaborations, and full-time opportunities in web development and software engineering.</p>
+    <p class="reveal d2" style="margin-top:1rem;font-size:.82rem;color:var(--bone-dim);max-width:480px;line-height:1.85;">Available for editorial shoots, commercial campaigns, and brand collaborations across Pakistan. Based in Gujranwala, willing to travel nationwide for professional opportunities.</p>
   </div>
   <div class="page-hero-number">05</div>
 </div>
@@ -128,7 +142,7 @@
   </div>
 
   <!-- Monogram -->
-  <div class="mono-bg">AV</div>
+  <div class="mono-bg">MS</div>
 
   <div class="container" style="position:relative;z-index:2;">
     <div class="contact-card reveal scale">
@@ -175,7 +189,7 @@
       </div>
 
       <!-- Social row -->
-      <div style="border-top:1px solid rgba(129,140,248,0.1);padding-top:1.5rem;">
+      <div style="border-top:1px solid rgba(212,197,169,0.1);padding-top:1.5rem;">
         <p class="label" style="text-align:center;margin-bottom:1rem;">Connect on Social Media</p>
         <div style="display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;">
           <!-- Instagram -->
