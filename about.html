@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Muhammad Saad</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Outfit:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <style>
+    /* Portrait with decorative chrome corners */
+    .portrait-wrap { position: relative; display: inline-block; width: 100%; }
+    .portrait-wrap img { width: 100%; height: 560px; object-fit: cover; object-position: center top; border-radius: var(--r-xl); display: block; }
+
+    .portrait-wrap::before,
+    .portrait-wrap::after {
+      content: ''; position: absolute; width: 56px; height: 56px;
+      border-color: rgba(129,140,248,0.6); border-style: solid; pointer-events: none;
+    }
+    .portrait-wrap::before { top: -10px; left: -10px; border-width: 2px 0 0 2px; border-radius: 8px 0 0 0; }
+    .portrait-wrap::after  { bottom: -10px; right: -10px; border-width: 0 2px 2px 0; border-radius: 0 0 8px 0; }
+
+    .portrait-badge {
+      position: absolute; bottom: 1.5rem; left: 1.5rem;
+      background: rgba(8,8,15,0.82); backdrop-filter: blur(14px);
+      border: 1px solid rgba(129,140,248,0.2); border-radius: var(--r-md);
+      padding: .9rem 1.2rem; max-width: 200px;
+    }
+
+    /* Drop-cap */
+    .drop-cap::first-letter {
+      font-family: 'DM Serif Display', serif; float: left; font-size: 4.5rem; line-height: .78;
+      margin-right: .2rem; padding-top: .05em;
+      background: linear-gradient(135deg, var(--accent-bright), var(--accent));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+
+    /* Tags */
+    .tag-list { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .tag-pill {
+      display: inline-block; padding: .35rem .9rem;
+      border: 1px solid rgba(129,140,248,0.25); border-radius: var(--r-pill);
+      font-size: .68rem; letter-spacing: .08em; text-transform: uppercase;
+      color: var(--accent-bright); font-family: 'Outfit', sans-serif; font-weight: 500;
+      background: rgba(129,140,248,0.05); transition: background .3s, border-color .3s;
+    }
+    .tag-pill:hover { background: rgba(129,140,248,0.12); border-color: rgba(129,140,248,.55); }
+
+    /* Quote block */
+    .quote-block {
+      border-left: 2px solid rgba(129,140,248,0.4); padding-left: 1.5rem;
+      margin: 2rem 0; font-family: 'Cormorant Garamond', serif; font-style: italic;
+      font-size: 1.25rem; color: rgba(237,237,245,.7); line-height: 1.75;
+    }
+    .quote-block cite { display: block; margin-top: .6rem; font-size: .72rem; font-style: normal; font-family: 'Outfit', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: var(--bone-dim); }
+
+    /* Timeline (experience) */
+    .timeline { display: flex; flex-direction: column; gap: 0; margin-top: 1.5rem; }
+    .tl-item { display: grid; grid-template-columns: 5rem 1px 1fr; gap: 0 1.25rem; padding-bottom: 1.5rem; }
+    .tl-item:last-child { padding-bottom: 0; }
+    .tl-year { font-family: 'Outfit', sans-serif; font-size: .78rem; font-weight: 600; color: var(--accent); text-align: right; padding-top: .15rem; }
+    .tl-line { background: rgba(129,140,248,0.15); width: 1px; position: relative; }
+    .tl-line::before { content: ''; position: absolute; top: .45rem; left: 50%; transform: translateX(-50%); width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px rgba(129,140,248,.6); }
+    .tl-copy { padding-left: .25rem; }
+    .tl-role { font-size: .82rem; font-weight: 600; color: var(--bone); font-family: 'Outfit', sans-serif; }
+    .tl-brand { font-size: .72rem; color: var(--bone-dim); margin-top: .15rem; }
+  </style>
+</head>
+<body data-page="about">
+<div id="cursor-dot"></div><div id="cursor-ring"></div><div id="progress-bar"></div><div id="page-cover"></div>
+
+<div id="mobile-drawer">
+  <a href="index.html"   class="mob-link" onclick="closeDrawer()">Home</a>
+  <a href="gallery.html" class="mob-link" onclick="closeDrawer()">Gallery</a>
+  <a href="stats.html"   class="mob-link" onclick="closeDrawer()">Stats</a>
+  <a href="about.html"   class="mob-link active" onclick="closeDrawer()">About</a>
+  <a href="contact.html" class="mob-link" onclick="closeDrawer()">Contact</a>
+</div>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><span class="nav-logo-name">M.SAAD</span><span class="nav-logo-sub">Pakistan</span></a>
+    <div class="nav-links">
+      <a href="index.html"   class="nav-link">Home</a>
+      <a href="gallery.html" class="nav-link">Gallery</a>
+      <a href="stats.html"   class="nav-link">Stats</a>
+      <a href="about.html"   class="nav-link active">About</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+    </div>
+    <a href="contact.html" class="nav-cta">Book Now</a>
+    <button class="ham-btn" id="ham-btn"><span id="h1"></span><span id="h2"></span><span id="h3"></span></button>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="container" style="position:relative;z-index:2;">
+    <div class="reveal"><span class="label">The Story</span><span class="accent-line"></span></div>
+    <h1 class="display reveal d1" style="font-size:clamp(3rem,6vw,5.5rem);line-height:.95;margin-top:.6rem;color:var(--bone);">About <em class="text-accent-anim">Muhammad</em></h1>
+    <p class="reveal d2" style="margin-top:1rem;font-size:.82rem;color:var(--bone-dim);max-width:400px;line-height:1.85;">The face behind the frame. A story of craft, perspective, and presence.</p>
+  </div>
+  <div class="page-hero-number">04</div>
+</div>
+
+<section class="section-pad" style="background:linear-gradient(180deg,var(--ink-3) 0%,var(--ink) 100%);">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:420px 1fr;gap:4rem;align-items:start;" class="about-layout">
+
+      <!-- Left: Portrait -->
+      <div class="reveal" style="position:sticky;top:6rem;">
+        <div class="portrait-wrap">
+          <img src="assets/images/about-portrait.jpeg" alt="Muhammad Saad" loading="lazy"/>
+          <div class="portrait-badge">
+            <p class="label" style="font-size:.5rem;margin-bottom:.35rem;">Currently Studying</p>
+            <p class="serif" style="font-style:italic;font-size:1rem;color:var(--bone);">University of Punjab</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Bio content -->
+      <div>
+        <div class="reveal">
+          <p class="drop-cap serif" style="font-size:1.22rem;line-height:1.9;color:rgba(237,237,245,.8);font-weight:300;margin-bottom:1.25rem;">Muhammad Saad is a 21-year-old final year Computer Science student at University of the Punjab, based in Gujranwala, Pakistan. With a passion for technology and innovation, he combines academic excellence with practical development skills.</p>
+          <p style="font-size:.9rem;line-height:1.9;color:rgba(237,237,245,.6);margin-bottom:1rem;">Specializing in web development and UI/UX design, Muhammad brings creative problem-solving and technical expertise to every project. His journey in computer science has been marked by a dedication to learning cutting-edge technologies and applying them to real-world challenges.</p>
+          <p style="font-size:.9rem;line-height:1.9;color:rgba(237,237,245,.6);">When not coding, he explores new frameworks, contributes to open-source projects, and stays connected with the global tech community through platforms like LinkedIn and Instagram.</p>
+        </div>
+
+        <blockquote class="quote-block reveal d1">
+          "The best way to predict the future is to invent it."
+          <cite>— Alan Kay</cite>
+        </blockquote>
+
+        <div class="reveal d1" style="margin-bottom:2rem;">
+          <p class="label" style="margin-bottom:.9rem;">Specializations</p>
+          <div class="tag-list">
+            <span class="tag-pill">Web Development</span>
+            <span class="tag-pill">UI/UX Design</span>
+            <span class="tag-pill">React</span>
+            <span class="tag-pill">Node.js</span>
+            <span class="tag-pill">Python</span>
+            <span class="tag-pill">Full Stack</span>
+            <span class="tag-pill">JavaScript</span>
+            <span class="tag-pill">HTML/CSS</span>
+          </div>
+        </div>
+
+        <div class="reveal d2">
+          <p class="label" style="margin-bottom:1rem;">Education & Experience</p>
+          <div class="timeline">
+            <div class="tl-item">
+              <span class="tl-year">2022-2026</span>
+              <div class="tl-line"></div>
+              <div class="tl-copy"><p class="tl-role">Bachelor of Computer Science</p><p class="tl-brand">University of the Punjab · Gujranwala</p></div>
+            </div>
+            <div class="tl-item">
+              <span class="tl-year">2025</span>
+              <div class="tl-line"></div>
+              <div class="tl-copy"><p class="tl-role">Web Development Projects</p><p class="tl-brand">Personal Portfolio · Multiple Client Projects</p></div>
+            </div>
+            <div class="tl-item">
+              <span class="tl-year">2024</span>
+              <div class="tl-line"></div>
+              <div class="tl-copy"><p class="tl-role">UI/UX Design Certification</p><p class="tl-brand">Online Platforms · Self-paced Learning</p></div>
+            </div>
+            <div class="tl-item">
+              <span class="tl-year">2023</span>
+              <div class="tl-line"></div>
+              <div class="tl-copy"><p class="tl-role">Full Stack Development</p><p class="tl-brand">MERN Stack · React & Node.js</p></div>
+            </div>
+            <div class="tl-item">
+              <span class="tl-year">2022</span>
+              <div class="tl-line"></div>
+              <div class="tl-copy"><p class="tl-role">Started Computer Science Degree</p><p class="tl-brand">University of the Punjab</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:2.5rem;display:flex;gap:.75rem;flex-wrap:wrap;" class="reveal d3">
+          <a href="contact.html" class="btn-primary">Work Together</a>
+          <a href="stats.html"   class="btn-ghost">View Details</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <style>@media(max-width:768px){.about-layout{grid-template-columns:1fr!important}.about-layout>div:first-child{position:relative!important;top:0!important}}</style>
+</section>
+
+<footer class="page-footer">
+  <div class="container footer-inner">
+    <span class="serif" style="font-style:italic;font-size:.95rem;background:linear-gradient(135deg,var(--accent-bright),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Muhammad Saad</span>
+    <div style="display:flex;gap:.6rem;">
+      <a href="#" class="social-btn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+      <a href="#" class="social-btn"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.79 1.53V6.78a4.85 4.85 0 01-1.02-.09z"/></svg></a>
+    </div>
+    <span class="footer-copy">© 2026 Muhammad Saad · All Rights Reserved</span>
+  </div>
+</footer>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

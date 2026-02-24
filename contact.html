@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Muhammad Saad</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Outfit:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <style>
+    /* Giant faded monogram */
+    .mono-bg {
+      position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+      font-family: 'DM Serif Display', serif; font-size: clamp(18rem, 35vw, 28rem);
+      color: transparent; -webkit-text-stroke: 1px rgba(129,140,248,0.06);
+      user-select: none; pointer-events: none; letter-spacing: -0.05em; line-height: 1;
+    }
+
+    /* Animated gradient lines */
+    .drift-lines {
+      position: absolute; inset: 0; overflow: hidden; pointer-events: none;
+    }
+    .drift-line {
+      position: absolute; width: 1px;
+      background: linear-gradient(180deg, transparent 0%, rgba(129,140,248,0.18) 40%, rgba(196,181,253,0.12) 60%, transparent 100%);
+      animation: drift-v linear infinite;
+    }
+    .drift-line.h {
+      width: auto; height: 1px; top: auto; left: 0; right: 0;
+      background: linear-gradient(90deg, transparent 0%, rgba(129,140,248,0.14) 40%, rgba(196,181,253,0.1) 60%, transparent 100%);
+      animation: drift-h linear infinite;
+    }
+    @keyframes drift-v { 0%{transform:translateY(-100%)} 100%{transform:translateY(100vh)} }
+    @keyframes drift-h { 0%{transform:translateX(-100%)} 100%{transform:translateX(100vw)} }
+
+    /* Contact card */
+    .contact-card {
+      position: relative; z-index: 2;
+      background: rgba(13,13,24,0.7); backdrop-filter: blur(24px);
+      border: 1px solid rgba(129,140,248,0.14); border-radius: var(--r-xl);
+      padding: 3.5rem 3rem; max-width: 600px; margin: 0 auto;
+    }
+
+    /* WhatsApp button variant */
+    .btn-whatsapp {
+      display: inline-flex; align-items: center; gap: .65rem; padding: .9rem 2.2rem;
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: #fff; font-family: 'Outfit', sans-serif; font-weight: 600; font-size: .82rem;
+      letter-spacing: .06em; text-transform: uppercase; border-radius: var(--r-pill);
+      text-decoration: none; transition: transform .3s, box-shadow .3s;
+    }
+    .btn-whatsapp:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(37,211,102,.3); }
+
+    /* Contact method row */
+    .contact-method {
+      display: flex; align-items: center; gap: 1rem; padding: 1.1rem 1.25rem;
+      border-radius: var(--r-md); border: 1px solid rgba(129,140,248,0.1);
+      background: rgba(129,140,248,0.03); transition: background .35s, border-color .35s;
+      text-decoration: none;
+    }
+    .contact-method:hover { background: rgba(129,140,248,0.08); border-color: rgba(129,140,248,.3); }
+    .contact-icon {
+      width: 42px; height: 42px; border-radius: var(--r-md); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(129,140,248,0.1); color: var(--accent-bright);
+    }
+
+    /* Availability chip */
+    .avail-chip {
+      display: inline-flex; align-items: center; gap: .5rem; padding: .45rem 1rem;
+      background: rgba(34,197,94,.08); border: 1px solid rgba(34,197,94,.25);
+      border-radius: var(--r-pill); font-size: .68rem; font-family: 'Outfit', sans-serif;
+      font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #4ade80;
+    }
+    .avail-dot { width: 7px; height: 7px; border-radius: 50%; background: #22c55e; animation: pulse-avail 1.8s ease-in-out infinite; }
+    @keyframes pulse-avail { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.7)} }
+
+    /* Divider */
+    .or-divider { display: flex; align-items: center; gap: 1rem; color: var(--bone-dim); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; font-family: 'Outfit', sans-serif; }
+    .or-divider::before, .or-divider::after { content: ''; flex: 1; height: 1px; background: rgba(129,140,248,0.12); }
+  </style>
+</head>
+<body data-page="contact">
+<div id="cursor-dot"></div><div id="cursor-ring"></div><div id="progress-bar"></div><div id="page-cover"></div>
+
+<div id="mobile-drawer">
+  <a href="index.html"   class="mob-link" onclick="closeDrawer()">Home</a>
+  <a href="gallery.html" class="mob-link" onclick="closeDrawer()">Gallery</a>
+  <a href="stats.html"   class="mob-link" onclick="closeDrawer()">Stats</a>
+  <a href="about.html"   class="mob-link" onclick="closeDrawer()">About</a>
+  <a href="contact.html" class="mob-link active" onclick="closeDrawer()">Contact</a>
+</div>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><span class="nav-logo-name">M.SAAD</span><span class="nav-logo-sub">Pakistan</span></a>
+    <div class="nav-links">
+      <a href="index.html"   class="nav-link">Home</a>
+      <a href="gallery.html" class="nav-link">Gallery</a>
+      <a href="stats.html"   class="nav-link">Stats</a>
+      <a href="about.html"   class="nav-link">About</a>
+      <a href="contact.html" class="nav-link active">Contact</a>
+    </div>
+    <a href="contact.html" class="nav-cta">Book Now</a>
+    <button class="ham-btn" id="ham-btn"><span id="h1"></span><span id="h2"></span><span id="h3"></span></button>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="container" style="position:relative;z-index:2;">
+    <div class="reveal"><span class="label">Get In Touch</span><span class="accent-line"></span></div>
+    <h1 class="display reveal d1" style="font-size:clamp(3rem,6vw,5.5rem);line-height:.95;margin-top:.6rem;color:var(--bone);">Let's <em class="text-accent-anim">Collaborate</em></h1>
+    <p class="reveal d2" style="margin-top:1rem;font-size:.82rem;color:var(--bone-dim);max-width:400px;line-height:1.85;">Open to freelance projects, collaborations, and full-time opportunities in web development and software engineering.</p>
+  </div>
+  <div class="page-hero-number">05</div>
+</div>
+
+<section class="section-pad" style="background:linear-gradient(180deg,var(--ink-3) 0%,var(--ink) 100%);position:relative;overflow:hidden;min-height:60vh;">
+
+  <!-- Decorative drift lines (JS-free, pure CSS) -->
+  <div class="drift-lines">
+    <div class="drift-line" style="left:15%;height:40%;top:-40%;animation-duration:9s;animation-delay:-2s;"></div>
+    <div class="drift-line" style="left:35%;height:55%;top:-55%;animation-duration:12s;animation-delay:-5s;"></div>
+    <div class="drift-line" style="left:60%;height:35%;top:-35%;animation-duration:8s;animation-delay:-1s;"></div>
+    <div class="drift-line" style="left:80%;height:60%;top:-60%;animation-duration:14s;animation-delay:-7s;"></div>
+    <div class="drift-line h" style="top:30%;animation-duration:18s;animation-delay:0s;"></div>
+    <div class="drift-line h" style="top:65%;animation-duration:22s;animation-delay:-8s;"></div>
+  </div>
+
+  <!-- Monogram -->
+  <div class="mono-bg">AV</div>
+
+  <div class="container" style="position:relative;z-index:2;">
+    <div class="contact-card reveal scale">
+
+      <!-- Availability + heading -->
+      <div style="text-align:center;margin-bottom:2.5rem;">
+        <div class="avail-chip" style="margin:0 auto .75rem;width:fit-content;"><span class="avail-dot"></span>Available for Bookings</div>
+        <h2 class="display" style="font-size:clamp(2rem,4vw,2.8rem);color:var(--bone);line-height:1.05;">Say <em class="text-accent-anim">Hello</em></h2>
+        <p style="font-size:.82rem;color:var(--bone-dim);margin-top:.6rem;line-height:1.8;">All project inquiries welcome. Typical response within 24 hours.</p>
+      </div>
+
+      <!-- WhatsApp primary CTA -->
+      <div style="text-align:center;margin-bottom:2rem;">
+        <a href="https://wa.me/923010603376" class="btn-whatsapp" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2a10 10 0 00-8.654 14.997L2 22l5.143-1.317A10 10 0 1012 2z"/></svg>
+          Chat on WhatsApp
+        </a>
+      </div>
+
+      <div class="or-divider" style="margin-bottom:2rem;">or reach out directly</div>
+
+      <!-- Contact methods -->
+      <div style="display:flex;flex-direction:column;gap:.75rem;margin-bottom:2rem;">
+        <a href="mailto:saadchattha77@gmail.com" class="contact-method">
+          <div class="contact-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <p style="font-size:.65rem;font-family:'Outfit',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--bone-dim);margin-bottom:.15rem;">Email</p>
+            <p style="font-size:.88rem;color:var(--bone);font-family:'Outfit',sans-serif;">saadchattha77@gmail.com</p>
+          </div>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-left:auto;color:var(--bone-dim);"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+        <a href="tel:+923010603376" class="contact-method">
+          <div class="contact-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div>
+            <p style="font-size:.65rem;font-family:'Outfit',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--bone-dim);margin-bottom:.15rem;">Phone</p>
+            <p style="font-size:.88rem;color:var(--bone);font-family:'Outfit',sans-serif;">+92-301-060-3376</p>
+          </div>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-left:auto;color:var(--bone-dim);"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+
+      <!-- Social row -->
+      <div style="border-top:1px solid rgba(129,140,248,0.1);padding-top:1.5rem;">
+        <p class="label" style="text-align:center;margin-bottom:1rem;">Connect on Social Media</p>
+        <div style="display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;">
+          <!-- Instagram -->
+          <a href="https://www.instagram.com/__saadi_0?igsh=MWV5Y21lazRqcTdlZQ%3D%3D&utm_source=qr" class="social-btn" title="Instagram" target="_blank" rel="noopener">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <!-- LinkedIn -->
+          <a href="https://www.linkedin.com/in/saad-chattha-568901263/" class="social-btn" title="LinkedIn" target="_blank" rel="noopener">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer class="page-footer">
+  <div class="container footer-inner">
+    <span class="serif" style="font-style:italic;font-size:.95rem;background:linear-gradient(135deg,var(--accent-bright),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Muhammad Saad</span>
+    <div style="display:flex;gap:.6rem;">
+      <a href="https://www.instagram.com/__saadi_0?igsh=MWV5Y21lazRqcTdlZQ%3D%3D&utm_source=qr" class="social-btn" target="_blank" rel="noopener"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+      <a href="https://www.linkedin.com/in/saad-chattha-568901263/" class="social-btn" target="_blank" rel="noopener"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+    </div>
+    <span class="footer-copy">© 2026 Muhammad Saad · All Rights Reserved</span>
+  </div>
+</footer>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

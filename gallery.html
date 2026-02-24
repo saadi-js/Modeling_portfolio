@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery — Muhammad Saad</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Outfit:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <style>
+    .masonry { columns: 3; column-gap: 1rem; }
+    @media(max-width:900px){ .masonry { columns: 2; } }
+    @media(max-width:500px){ .masonry { columns: 1; } }
+
+    .g-item {
+      break-inside: avoid; margin-bottom: 1rem;
+      position: relative; overflow: hidden;
+      border-radius: var(--r-md); cursor: pointer;
+    }
+    .g-item img {
+      width: 100%; display: block;
+      transition: transform .7s cubic-bezier(.23,1,.32,1);
+    }
+    .g-item:hover img { transform: scale(1.06); }
+    .g-item::before {
+      content: ''; position: absolute; top: 0; left: -120%;
+      width: 60%; height: 100%; border-radius: inherit;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.05), transparent);
+      transform: skewX(-20deg); transition: left .75s; z-index: 5;
+    }
+    .g-item:hover::before { left: 150%; }
+    .g-overlay {
+      position: absolute; inset: 0; border-radius: var(--r-md);
+      background: linear-gradient(to top, rgba(8,8,15,.92) 0%, rgba(8,8,15,.25) 45%, transparent 70%);
+      opacity: 0; transition: opacity .4s; z-index: 4;
+      display: flex; align-items: flex-end; padding: 1.25rem;
+    }
+    .g-item:hover .g-overlay { opacity: 1; }
+    .g-badge {
+      display: inline-block; font-size: .52rem; font-weight: 600;
+      letter-spacing: .2em; text-transform: uppercase;
+      padding: .28rem .75rem; border-radius: var(--r-pill);
+      background: linear-gradient(135deg, var(--accent-bright), var(--accent));
+      color: var(--ink); margin-bottom: .4rem;
+    }
+    .g-badge.comm {
+      background: linear-gradient(135deg, #d4d4d8, #a3a3b3);
+    }
+    .g-item.hidden { display: none; }
+
+    .filter-btn {
+      font-size: .64rem; font-weight: 500; letter-spacing: .2em; text-transform: uppercase;
+      padding: .6rem 1.6rem; border-radius: var(--r-pill);
+      border: 1px solid rgba(129,140,248,.22); color: rgba(237,237,245,.45);
+      background: transparent; cursor: pointer; transition: all .35s;
+    }
+    .filter-btn:hover { color: var(--accent-bright); border-color: var(--accent); background: rgba(129,140,248,.08); }
+    .filter-btn.active { background: linear-gradient(135deg, var(--accent-bright), var(--accent)); color: var(--ink); border-color: transparent; }
+
+    /* Lightbox */
+    #lb { position: fixed; inset: 0; z-index: 5000; background: rgba(8,8,15,.97); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity .4s; }
+    #lb.open { opacity: 1; pointer-events: all; }
+    #lb img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: var(--r-md); box-shadow: 0 40px 80px rgba(0,0,0,.7); }
+    #lb-close { position: absolute; top: 1.5rem; right: 2rem; font-size: 2rem; color: var(--bone-dim); cursor: pointer; transition: color .3s; line-height: 1; }
+    #lb-close:hover { color: var(--accent); }
+    #lb-caption { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); text-align: center; }
+  </style>
+</head>
+<body data-page="gallery">
+<div id="cursor-dot"></div><div id="cursor-ring"></div><div id="progress-bar"></div><div id="page-cover"></div>
+
+<div id="lb">
+  <span id="lb-close">&times;</span>
+  <img id="lb-img" src="" alt="" />
+  <div id="lb-caption"><p class="serif" style="font-style:italic;font-size:1rem;color:rgba(237,237,245,.6);" id="lb-title"></p></div>
+</div>
+
+<div id="mobile-drawer">
+  <a href="index.html"   class="mob-link" onclick="closeDrawer()">Home</a>
+  <a href="gallery.html" class="mob-link active" onclick="closeDrawer()">Gallery</a>
+  <a href="stats.html"   class="mob-link" onclick="closeDrawer()">Stats</a>
+  <a href="about.html"   class="mob-link" onclick="closeDrawer()">About</a>
+  <a href="contact.html" class="mob-link" onclick="closeDrawer()">Contact</a>
+</div>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><span class="nav-logo-name">M.SAAD</span><span class="nav-logo-sub">Pakistan</span></a>
+    <div class="nav-links">
+      <a href="index.html"   class="nav-link">Home</a>
+      <a href="gallery.html" class="nav-link active">Gallery</a>
+      <a href="stats.html"   class="nav-link">Stats</a>
+      <a href="about.html"   class="nav-link">About</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+    </div>
+    <a href="contact.html" class="nav-cta">Book Now</a>
+    <button class="ham-btn" id="ham-btn"><span id="h1"></span><span id="h2"></span><span id="h3"></span></button>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="container" style="position:relative;z-index:2;">
+    <div class="reveal"><span class="label">Portfolio Work</span><span class="accent-line"></span></div>
+    <h1 class="display reveal d1" style="font-size:clamp(3rem,6vw,5.5rem);line-height:.95;margin-top:.6rem;color:var(--bone);">The <em class="text-accent-anim">Gallery</em></h1>
+    <p class="reveal d2" style="margin-top:1rem;font-size:.82rem;color:var(--bone-dim);max-width:420px;line-height:1.85;">Editorial and commercial work across New York, Berlin, and Milan. Click any image to view full size.</p>
+  </div>
+  <div class="page-hero-number">03</div>
+</div>
+
+<!-- GALLERY BODY -->
+<section class="section-pad" style="background:linear-gradient(180deg,var(--ink-3) 0%,var(--ink) 100%);">
+  <div class="container">
+    <!-- Filters -->
+    <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:2.5rem;" class="reveal">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="editorial">Editorial</button>
+      <button class="filter-btn" data-filter="commercial">Commercial</button>
+    </div>
+
+    <!-- Masonry -->
+    <div class="masonry reveal scale" id="gallery-grid">
+
+      <div class="g-item" data-cat="editorial" onclick="lbOpen(this)">
+        <img src="assets/images/editorial-golden-hour.jpeg" alt="Golden Hour" data-title="Golden Hour" loading="lazy"/>
+        <div class="g-overlay"><div><div class="g-badge">Editorial</div><p class="serif" style="font-size:1rem;font-style:italic;color:var(--bone);">Golden Hour</p></div></div>
+      </div>
+
+      <div class="g-item" data-cat="commercial" onclick="lbOpen(this)">
+        <img src="assets/images/commercial-sport.jpeg" alt="Activewear" data-title="Activewear Campaign" loading="lazy"/>
+        <div class="g-overlay"><div><div class="g-badge comm">Commercial</div><p class="serif" style="font-size:1rem;font-style:italic;color:var(--bone);">Activewear Campaign</p></div></div>
+      </div>
+
+      <div class="g-item" data-cat="editorial" onclick="lbOpen(this)">
+        <img src="assets/images/editorial-rooftop.jpeg" alt="Rooftop" data-title="Rooftop Series" loading="lazy"/>
+        <div class="g-overlay"><div><div class="g-badge">Editorial</div><p class="serif" style="font-size:1rem;font-style:italic;color:var(--bone);">Rooftop Series</p></div></div>
+      </div>
+
+      <div class="g-item" data-cat="commercial" onclick="lbOpen(this)">
+        <img src="assets/images/commercial-casual-day.jpeg" alt="Street Style" data-title="Street Style" loading="lazy"/>
+        <div class="g-overlay"><div><div class="g-badge comm">Commercial</div><p class="serif" style="font-size:1rem;font-style:italic;color:var(--bone);">Street Style</p></div></div>
+      </div>
+
+      <div class="g-item" data-cat="editorial" onclick="lbOpen(this)">
+        <img src="assets/images/editorial-studio-shadow.jpeg" alt="Studio Shadow" data-title="Studio Shadow" loading="lazy"/>
+        <div class="g-overlay"><div><div class="g-badge">Editorial</div><p class="serif" style="font-size:1rem;font-style:italic;color:var(--bone);">Studio Shadow</p></div></div>
+      </div>
+
+      <div class="g-item" data-cat="commercial" onclick="lbOpen(this)">
+        <img src="assets/images/commercial-watch-ad.jpeg" alt="Timepiece" data-title="Timepiece No.04" loading="lazy"/>
+        <div class="g-overlay"><div><div class="g-badge comm">Commercial</div><p class="serif" style="font-size:1rem;font-style:italic;color:var(--bone);">Timepiece No.04</p></div></div>
+      </div>
+
+      <div class="g-item" data-cat="editorial" onclick="lbOpen(this)">
+        <img src="assets/images/editorial-monochrome.jpeg" alt="Monochrome" data-title="Monochrome Vol.II" loading="lazy"/>
+        <div class="g-overlay"><div><div class="g-badge">Editorial</div><p class="serif" style="font-size:1rem;font-style:italic;color:var(--bone);">Monochrome Vol.II</p></div></div>
+      </div>
+
+      <div class="g-item" data-cat="commercial" onclick="lbOpen(this)">
+        <img src="assets/images/commercial-formal.jpeg" alt="Formal" data-title="Formal Suiting" loading="lazy"/>
+        <div class="g-overlay"><div><div class="g-badge comm">Commercial</div><p class="serif" style="font-size:1rem;font-style:italic;color:var(--bone);">Formal Suiting</p></div></div>
+      </div>
+
+      <div class="g-item" data-cat="editorial" onclick="lbOpen(this)">
+        <img src="assets/images/editorial-coat.jpeg" alt="Overcoat" data-title="Overcoat No.12" loading="lazy"/>
+        <div class="g-overlay"><div><div class="g-badge">Editorial</div><p class="serif" style="font-size:1rem;font-style:italic;color:var(--bone);">Overcoat No.12</p></div></div>
+      </div>
+
+      <div class="g-item" data-cat="commercial" onclick="lbOpen(this)">
+        <img src="assets/images/commercial-profile.jpeg" alt="Profile" data-title="Profile Series" loading="lazy"/>
+        <div class="g-overlay"><div><div class="g-badge comm">Commercial</div><p class="serif" style="font-size:1rem;font-style:italic;color:var(--bone);">Profile Series</p></div></div>
+      </div>
+
+      <div class="g-item" data-cat="editorial" onclick="lbOpen(this)">
+        <img src="assets/images/editorial-open-collar.jpeg" alt="Open Collar" data-title="Open Collar" loading="lazy"/>
+        <div class="g-overlay"><div><div class="g-badge">Editorial</div><p class="serif" style="font-size:1rem;font-style:italic;color:var(--bone);">Open Collar</p></div></div>
+      </div>
+
+      <div class="g-item" data-cat="editorial" onclick="lbOpen(this)">
+        <img src="assets/images/editorial-vol2.jpeg" alt="Volume II" data-title="Editorial Vol. II" loading="lazy"/>
+        <div class="g-overlay"><div><div class="g-badge">Editorial</div><p class="serif" style="font-size:1rem;font-style:italic;color:var(--bone);">Editorial Vol. II</p></div></div>
+      </div>
+
+      <div class="g-item" data-cat="editorial" onclick="lbOpen(this)">
+        <img src="assets/images/editorial-studio2.jpeg" alt="Studio II" data-title="Studio Series II" loading="lazy"/>
+        <div class="g-overlay"><div><div class="g-badge">Editorial</div><p class="serif" style="font-size:1rem;font-style:italic;color:var(--bone);">Studio Series II</p></div></div>
+      </div>
+
+      <div class="g-item" data-cat="commercial" onclick="lbOpen(this)">
+        <img src="assets/images/commercial-lifestyle.jpeg" alt="Lifestyle" data-title="Lifestyle Campaign" loading="lazy"/>
+        <div class="g-overlay"><div><div class="g-badge comm">Commercial</div><p class="serif" style="font-size:1rem;font-style:italic;color:var(--bone);">Lifestyle Campaign</p></div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer class="page-footer">
+  <div class="container footer-inner">
+    <span class="serif" style="font-style:italic;font-size:.95rem;background:linear-gradient(135deg,var(--accent-bright),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Muhammad Saad</span>
+    <div style="display:flex;gap:.6rem;">
+      <a href="#" class="social-btn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+      <a href="#" class="social-btn"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.79 1.53V6.78a4.85 4.85 0 01-1.02-.09z"/></svg></a>
+    </div>
+    <span class="footer-copy">© 2026 Muhammad Saad · All Rights Reserved</span>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+<script>
+  // Gallery filter
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      document.querySelectorAll('.g-item').forEach(item => {
+        const match = f === 'all' || item.dataset.cat === f;
+        if (match) {
+          item.classList.remove('hidden');
+          item.style.opacity = '0'; item.style.transform = 'translateY(16px)';
+          requestAnimationFrame(() => requestAnimationFrame(() => {
+            item.style.transition = 'opacity .4s, transform .4s';
+            item.style.opacity = '1'; item.style.transform = 'translateY(0)';
+          }));
+        } else { item.classList.add('hidden'); }
+      });
+    });
+  });
+
+  // Lightbox
+  const lb = document.getElementById('lb');
+  const lbImg = document.getElementById('lb-img');
+  const lbTitle = document.getElementById('lb-title');
+
+  function lbOpen(el) {
+    const img = el.querySelector('img');
+    lbImg.src = img.src; lbTitle.textContent = img.dataset.title || img.alt;
+    lb.classList.add('open'); document.body.style.overflow = 'hidden';
+  }
+  document.getElementById('lb-close').addEventListener('click', lbClose);
+  lb.addEventListener('click', e => { if (e.target === lb) lbClose(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') lbClose(); });
+  function lbClose() { lb.classList.remove('open'); document.body.style.overflow = ''; }
+</script>
+</body>
+</html>

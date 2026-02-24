@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stats — Muhammad Saad</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Outfit:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <style>
+    .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid rgba(129,140,248,0.12); border-radius: var(--r-lg); overflow: hidden; }
+    @media(max-width:640px){ .stats-grid { grid-template-columns: repeat(2,1fr); } }
+
+    .stat-cell {
+      padding: 1.75rem 1.5rem; position: relative; overflow: hidden;
+      border-right: 1px solid rgba(129,140,248,0.1);
+      border-bottom: 1px solid rgba(129,140,248,0.1);
+      transition: background .4s;
+    }
+    .stat-cell:nth-child(3n)    { border-right: none; }
+    .stat-cell:nth-last-child(-n+3) { border-bottom: none; }
+    @media(max-width:640px){
+      .stat-cell:nth-child(2n) { border-right: none; }
+      .stat-cell:nth-child(3n) { border-right: 1px solid rgba(129,140,248,0.1); }
+      .stat-cell:nth-child(2n+1):nth-last-child(-n+2),
+      .stat-cell:nth-child(2n+1):nth-last-child(-n+2) ~ .stat-cell { border-bottom: none; }
+    }
+
+    .stat-cell::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(129,140,248,0.06) 0%, transparent 60%);
+      opacity: 0; transition: opacity .4s;
+    }
+    .stat-cell:hover { background: rgba(129,140,248,0.04); }
+    .stat-cell:hover::before { opacity: 1; }
+
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 600; line-height: 1;
+      background: linear-gradient(135deg, var(--accent-bright), var(--accent));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .stat-word {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 400;
+      font-style: italic; color: var(--bone); line-height: 1;
+    }
+
+    /* Summary bar */
+    .summary-bar {
+      display: grid; grid-template-columns: repeat(4,1fr);
+      border: 1px solid rgba(129,140,248,0.14); border-radius: var(--r-lg); overflow: hidden;
+      margin-top: 2.5rem;
+    }
+    .summary-item {
+      padding: 1.25rem 1rem; text-align: center;
+      border-right: 1px solid rgba(129,140,248,0.1);
+    }
+    .summary-item:last-child { border-right: none; }
+    @media(max-width:480px){ .summary-bar { grid-template-columns: repeat(2,1fr); } .summary-item:nth-child(2){ border-right: none; } .summary-item { border-bottom: 1px solid rgba(129,140,248,0.1); } }
+
+    /* Profile feature */
+    .profile-img { border-radius: var(--r-xl); overflow: hidden; }
+    .profile-img img { width: 100%; height: 500px; object-fit: cover; object-position: center top; display: block; }
+
+    /* Info chip */
+    .info-chip { display: flex; align-items: center; gap: .75rem; padding: .9rem 1.1rem; border-radius: var(--r-md); background: rgba(129,140,248,0.06); border: 1px solid rgba(129,140,248,0.12); }
+  </style>
+</head>
+<body data-page="stats">
+<div id="cursor-dot"></div><div id="cursor-ring"></div><div id="progress-bar"></div><div id="page-cover"></div>
+
+<div id="mobile-drawer">
+  <a href="index.html"   class="mob-link" onclick="closeDrawer()">Home</a>
+  <a href="gallery.html" class="mob-link" onclick="closeDrawer()">Gallery</a>
+  <a href="stats.html"   class="mob-link active" onclick="closeDrawer()">Stats</a>
+  <a href="about.html"   class="mob-link" onclick="closeDrawer()">About</a>
+  <a href="contact.html" class="mob-link" onclick="closeDrawer()">Contact</a>
+</div>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><span class="nav-logo-name">M.SAAD</span><span class="nav-logo-sub">Pakistan</span></a>
+    <div class="nav-links">
+      <a href="index.html"   class="nav-link">Home</a>
+      <a href="gallery.html" class="nav-link">Gallery</a>
+      <a href="stats.html"   class="nav-link active">Stats</a>
+      <a href="about.html"   class="nav-link">About</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+    </div>
+    <a href="contact.html" class="nav-cta">Book Now</a>
+    <button class="ham-btn" id="ham-btn"><span id="h1"></span><span id="h2"></span><span id="h3"></span></button>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="container" style="position:relative;z-index:2;">
+    <div class="reveal"><span class="label">Specifications</span><span class="accent-line"></span></div>
+    <h1 class="display reveal d1" style="font-size:clamp(3rem,6vw,5.5rem);line-height:.95;margin-top:.6rem;color:var(--bone);">Body <em class="text-accent-anim">Statistics</em></h1>
+    <p class="reveal d2" style="margin-top:1rem;font-size:.82rem;color:var(--bone-dim);max-width:400px;line-height:1.85;">Official measurements updated February 2026. Available in both metric and imperial.</p>
+  </div>
+  <div class="page-hero-number">02</div>
+</div>
+
+<section class="section-pad" style="background:linear-gradient(180deg,var(--ink-3) 0%,var(--ink) 100%);">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 360px;gap:3.5rem;align-items:start;" class="stats-layout">
+
+      <!-- Left: stats grid + summary -->
+      <div>
+        <div class="stats-grid reveal scale d1">
+          <div class="stat-cell"><p class="stat-num">180</p><p class="label" style="font-size:.55rem;opacity:.7;margin-top:.3rem;">Height (cm)</p><p style="font-size:.7rem;color:rgba(237,237,245,.3);margin-top:.1rem;">5′ 11″</p></div>
+          <div class="stat-cell"><p class="stat-num">37″</p><p class="label" style="font-size:.55rem;opacity:.7;margin-top:.3rem;">Chest</p><p style="font-size:.7rem;color:rgba(237,237,245,.3);margin-top:.1rem;">94 cm</p></div>
+          <div class="stat-cell"><p class="stat-num">31″</p><p class="label" style="font-size:.55rem;opacity:.7;margin-top:.3rem;">Waist</p><p style="font-size:.7rem;color:rgba(237,237,245,.3);margin-top:.1rem;">79 cm</p></div>
+          <div class="stat-cell"><p class="stat-num">36″</p><p class="label" style="font-size:.55rem;opacity:.7;margin-top:.3rem;">Hips</p><p style="font-size:.7rem;color:rgba(237,237,245,.3);margin-top:.1rem;">91 cm</p></div>
+          <div class="stat-cell"><p class="stat-num">32″</p><p class="label" style="font-size:.55rem;opacity:.7;margin-top:.3rem;">Inseam</p><p style="font-size:.7rem;color:rgba(237,237,245,.3);margin-top:.1rem;">81 cm</p></div>
+          <div class="stat-cell"><p class="stat-num">43</p><p class="label" style="font-size:.55rem;opacity:.7;margin-top:.3rem;">Shoe EU</p><p style="font-size:.7rem;color:rgba(237,237,245,.3);margin-top:.1rem;">US 10</p></div>
+          <div class="stat-cell"><p class="stat-word">Brown</p><p class="label" style="font-size:.55rem;opacity:.7;margin-top:.3rem;">Hair</p></div>
+          <div class="stat-cell"><p class="stat-word">Hazel</p><p class="label" style="font-size:.55rem;opacity:.7;margin-top:.3rem;">Eyes</p></div>
+          <div class="stat-cell"><p class="stat-num">38R</p><p class="label" style="font-size:.55rem;opacity:.7;margin-top:.3rem;">Suit / Jacket</p></div>
+        </div>
+
+        <!-- Summary bar -->
+        <div class="summary-bar reveal d2">
+          <div class="summary-item"><p class="stat-num" style="font-size:1.8rem;">180</p><p class="label" style="font-size:.52rem;opacity:.6;margin-top:.25rem;">Height cm</p></div>
+          <div class="summary-item"><p class="stat-num" style="font-size:1.8rem;">37″</p><p class="label" style="font-size:.52rem;opacity:.6;margin-top:.25rem;">Chest</p></div>
+          <div class="summary-item"><p class="stat-num" style="font-size:1.8rem;">31″</p><p class="label" style="font-size:.52rem;opacity:.6;margin-top:.25rem;">Waist</p></div>
+          <div class="summary-item"><p class="stat-num" style="font-size:1.8rem;">43</p><p class="label" style="font-size:.52rem;opacity:.6;margin-top:.25rem;">Shoe EU</p></div>
+        </div>
+
+        <!-- Info chips -->
+        <div style="display:flex;flex-direction:column;gap:.65rem;margin-top:2rem;" class="reveal d3">
+          <div class="info-chip">
+            <div style="width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,var(--accent-bright),var(--accent));flex-shrink:0;"></div>
+            <p style="font-size:.78rem;color:var(--bone-dim);">Available for editorial, commercial, runway &amp; lookbook work</p>
+          </div>
+          <div class="info-chip">
+            <div style="width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,var(--accent-bright),var(--accent));flex-shrink:0;"></div>
+            <p style="font-size:.78rem;color:var(--bone-dim);">Open to international agency representation inquiries</p>
+          </div>
+          <div class="info-chip">
+            <div style="width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,var(--accent-bright),var(--accent));flex-shrink:0;"></div>
+            <p style="font-size:.78rem;color:var(--bone-dim);">Information last updated: February 2026 · Gujranwala, Pakistan</p>
+          </div>
+        </div>
+
+        <div style="margin-top:2.5rem;display:flex;gap:.75rem;flex-wrap:wrap;" class="reveal d4">
+          <a href="contact.html" class="btn-primary">Book Me</a>
+          <a href="gallery.html" class="btn-ghost">View Gallery</a>
+        </div>
+      </div>
+
+      <!-- Right: profile portrait -->
+      <div class="reveal right" style="display:flex;flex-direction:column;gap:1rem;">
+        <div class="profile-img">
+          <img src="assets/images/stats-profile.jpeg" alt="Muhammad Saad Profile" loading="lazy"/>
+        </div>
+        <div class="glass" style="padding:1.25rem;">
+          <p class="label" style="margin-bottom:.75rem;">Based in</p>
+          <p class="serif" style="font-style:italic;font-size:1.2rem;color:var(--bone);">Gujranwala, Pakistan</p>
+          <p style="font-size:.75rem;color:var(--bone-dim);margin-top:.5rem;line-height:1.7;">University of the Punjab. Final year CS student.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <style>@media(max-width:768px){.stats-layout{grid-template-columns:1fr!important}.stats-layout>div:last-child{display:none!important}}</style>
+</section>
+
+<footer class="page-footer">
+  <div class="container footer-inner">
+    <span class="serif" style="font-style:italic;font-size:.95rem;background:linear-gradient(135deg,var(--accent-bright),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Muhammad Saad</span>
+    <div style="display:flex;gap:.6rem;">
+      <a href="#" class="social-btn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+      <a href="#" class="social-btn"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.79 1.53V6.78a4.85 4.85 0 01-1.02-.09z"/></svg></a>
+    </div>
+    <span class="footer-copy">© 2026 Muhammad Saad · All Rights Reserved</span>
+  </div>
+</footer>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
